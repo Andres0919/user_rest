@@ -1,16 +1,10 @@
 "use strict";
+const userHandle = require("../handlers/user");
 
 module.exports = [
   {
-    method: "GET",
+    method: "POST",
     path: "/user",
-    handler: (req, h) => {
-      console.log(":)");
-      return h
-        .response({
-          message: "organization created",
-        })
-        .code(200);
-    },
+    handler: userHandle.createUser,
   },
 ];
