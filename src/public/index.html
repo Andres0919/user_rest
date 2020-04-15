@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container-fluid" id="app">
+      <h1>Users</h1>
+      <form
+        action="http://localhost:3000/user"
+        method="POST"
+        enctype="multipart/form-data"
+        @submit.prevent="sendForm"
+      >
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="firstName">Nombre</label>
+            <input
+              name="firstName"
+              type="text"
+              class="form-control"
+              id="firstName"
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="lastName">Apellido</label>
+            <input
+              name="lastName"
+              type="text"
+              class="form-control"
+              id="lastName"
+            />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-2">
+            <label for="documentType">Tipo de documento</label>
+            <input
+              name="documentType"
+              type="text"
+              class="form-control"
+              id="documentType"
+            />
+          </div>
+          <div class="form-group col-md-2">
+            <label for="documentNumber">Documento de identidad</label>
+            <input
+              name="documentNumber"
+              type="text"
+              class="form-control"
+              id="documentNumber"
+            />
+          </div>
+          <div class="form-group col-md-4">
+            <label for="email">Correo electrónico</label>
+            <input name="email" type="email" class="form-control" id="email" />
+          </div>
+          <div class="form-group col-md-4">
+            <label for="cellphone">Celular</label>
+            <input
+              name="cellphone"
+              type="text"
+              class="form-control"
+              id="cellphone"
+            />
+          </div>
+          <div class="form-group col-md-4">
+            <label for="birthDate">Fecha de nacimiento</label>
+            <input
+              name="birthDate"
+              type="date"
+              class="form-control"
+              id="birthDate"
+            />
+          </div>
+          <div class="form-group col-md-4">
+            <label for="file">Archivo</label>
+            <input
+              ref="file"
+              name="file"
+              type="file"
+              class="form-control"
+              id="file"
+            />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Save user</button>
+      </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          message: "Hello Vue!",
+        },
+        methods: {
+          sendForm: async function () {
+            const config = {
+              headers: { "Content-Type": "multipart/form-data" },
+            };
+            let formData = new FormData();
+            formData.append("file", this.$refs.file.files[0]);
+            console.log("this.$refs.file :", this.$refs.file.files[0]);
+            try {
+              let res = await axios.post(
+                "http://localhost:3000/user",
+                formData,
+                config
+              );
+              console.log(res);
+            } catch (error) {
+              console.log("error", error);
+            }
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
