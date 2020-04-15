@@ -1,0 +1,35 @@
+{
+  "name": "user_rest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Andres0919/user_rest.git"
+  },
+  "keywords": [
+    "user",
+    "api",
+    "rest"
+  ],
+  "author": "Andrés Posada",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Andres0919/user_rest/issues"
+  },
+  "homepage": "https://github.com/Andres0919/user_rest#readme",
+  "dependencies": {
+    "@hapi/hapi": "^19.1.1",
+    "pg": "^8.0.2",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.21.6",
+    "sequelize-cli": "^5.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
